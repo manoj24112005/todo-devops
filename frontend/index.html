@@ -2,13 +2,67 @@
 <html>
 <head>
     <title>DevOps To-Do App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            width: 70%;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f2f2f2;
+        }
+
+        .delete {
+            float: right;
+        }
+    </style>
 </head>
+
 <body>
 
     <h1>My To-Do App</h1>
 
-    <input type="text" placeholder="Enter a task">
-    <button>Add Task</button>
+    <input id="taskInput" type="text" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+        function addTask() {
+            const input = document.getElementById("taskInput");
+            const task = input.value.trim();
+
+            if (task === "") {
+                alert("Please enter a task");
+                return;
+            }
+
+            const li = document.createElement("li");
+            li.innerHTML = task +
+                ' <button class="delete" onclick="this.parentElement.remove()">Delete</button>';
+
+            document.getElementById("taskList").appendChild(li);
+
+            input.value = "";
+        }
+    </script>
 
 </body>
 </html>
